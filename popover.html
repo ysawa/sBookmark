@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookmark</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="sb.js"></script>
+    <link rel="stylesheet" type="text/css" media="all" href="default.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="style.css" />
+  </head>
+  <body>
+    <div id="main">
+      <h1>ブックマーク</h1>
+      <ul id="bookmarks">
+      </ul>
+    </div>
+    <script type="text/javascript">
+$(function () {
+  var SBPOP;
+
+  SBPOP = {
+    insertAllBookmarks: function () {
+      var auto_increment = SB.getAutoIncrement();
+      for (var i = auto_increment - 1; i >= 0; i--) {
+        var bookmark = SB.getBookmark(i);
+        if (bookmark === undefined) {
+          continue;
+        }
+        this.insertBookmark(i, bookmark);
+      }
+    },
+    insertBookmark: function (id, bookmark) {
+      var html = "<li class=\"bookmark\" id=\"bookmark_" + id + "\">";
+      html += "<a href=\"#\" class=\"delete\">x</a>";
+      html += "<a href=\"" + bookmark.href + "\" class=\"link\">";
+      if (bookmark.title) {
+        html += bookmark.title;
+      } else {
+        html += bookmark.href;
+      }
+      html += "</a></li>";
+      document.getElementById("bookmarks").innerHTML += html;
+    }
+  };
+
+  SBPOP.insertAllBookmarks();
+  $('li.bookmark a.link').live('click', function () {
+    safari.extension.globalPage.contentWindow.openNewPage($(this).attr('href'));
+    return false;
+  });
+});
+    </script>
+  </body>
+</html>

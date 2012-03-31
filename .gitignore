@@ -1,0 +1,14 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/
+.sass-cache/
+.DS_Store
+*.orig
+*.swp
+*.swo
+Gemfile.lock
+config/*.yml
+pkg
+.rvmrc
+vendor/cache
