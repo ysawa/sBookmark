@@ -6,6 +6,9 @@ this.sBookmark =
     while i < popovers.length
       popovers[i].hide()
       i++
+  deleteBookmark: (key) ->
+    store_key = @makeBookmarkKey(key)
+    localStorage.removeItem(store_key)
 
   findActiveBrowserWindow: (event) ->
     browserWindow = undefined

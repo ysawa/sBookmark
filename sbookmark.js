@@ -12,6 +12,11 @@
       }
       return _results;
     },
+    deleteBookmark: function(key) {
+      var store_key;
+      store_key = this.makeBookmarkKey(key);
+      return localStorage.removeItem(store_key);
+    },
     findActiveBrowserWindow: function(event) {
       var browserWindow, menuId;
       browserWindow = void 0;
