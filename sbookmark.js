@@ -1,6 +1,6 @@
 (function() {
 
-  this.SB = {
+  this.sBookmark = {
     closePopovers: function() {
       var i, popovers, _results;
       popovers = safari.extension.popovers;

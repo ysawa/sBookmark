@@ -1,4 +1,4 @@
-this.SB =
+this.sBookmark =
   closePopovers: ->
     popovers = safari.extension.popovers
     i = 0
