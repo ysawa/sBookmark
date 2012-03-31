@@ -51,6 +51,11 @@ div#main ul#bookmarks li.bookmark a.delete {
   margin-left: 10px;
   text-decoration: none;
 }
+
 div#main ul#bookmarks li.bookmark a.delete:hover {
   text-decoration: underline;
+}
+
+div#main ul#bookmarks li.bookmark span.timestamp {
+  font-size: 12px;
 }

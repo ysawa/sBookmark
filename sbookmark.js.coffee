@@ -68,7 +68,7 @@ this.sBookmark =
     data = {}
     data.href = href
     data.title = title
-    data.timestamp = parseInt((new Date) / 1000)
+    data.timestamp = @makeTimestamp()
     key = @getAutoIncrement()
     @setBookmark key, data
     @incrementAutoIncrement()
@@ -81,6 +81,12 @@ this.sBookmark =
   makeBookmarkKey: (key) ->
     store_key = "bookmark_" + key
     store_key
+
+  makeDateFromTimestamp: (timestamp) ->
+    new Date(timestamp * 1000)
+
+  makeTimestamp: ->
+    parseInt((new Date) / 1000)
 
   refreshPopovers: ->
     popovers = safari.extension.popovers

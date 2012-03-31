@@ -82,7 +82,7 @@
       data = {};
       data.href = href;
       data.title = title;
-      data.timestamp = parseInt((new Date) / 1000);
+      data.timestamp = this.makeTimestamp();
       key = this.getAutoIncrement();
       this.setBookmark(key, data);
       this.incrementAutoIncrement();
@@ -96,6 +96,12 @@
       var store_key;
       store_key = "bookmark_" + key;
       return store_key;
+    },
+    makeDateFromTimestamp: function(timestamp) {
+      return new Date(timestamp * 1000);
+    },
+    makeTimestamp: function() {
+      return parseInt((new Date) / 1000);
     },
     refreshPopovers: function() {
       var i, popovers, _results;

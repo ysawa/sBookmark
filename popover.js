@@ -21,7 +21,7 @@
       return _results;
     },
     insertBookmark: function(id, bookmark) {
-      var html, title;
+      var date, html, title;
       html = "<li class=\"bookmark\" id=\"bookmark_" + id + "\">";
       html += "<a href=\"#\" class=\"delete\" title=\"削除する\">×</a>";
       html += "<a href=\"" + bookmark.href + "\" class=\"link\">";
@@ -31,8 +31,21 @@
       } else {
         title = bookmark.href;
       }
-      html += sBookmark.truncate(title, 40);
-      html += "</a></li>";
+      html += sBookmark.truncate(title, 45);
+      html += "</a>";
+      if (bookmark.timestamp) {
+        date = sBookmark.makeDateFromTimestamp(bookmark.timestamp);
+        html += "<span class=\"timestamp\">";
+        html += "(";
+        html += date.getFullYear();
+        html += '/';
+        html += date.getMonth();
+        html += '/';
+        html += date.getDate();
+        html += ")";
+        html += "</span>";
+      }
+      html += "</li>";
       return document.getElementById("bookmarks").innerHTML += html;
     }
   };

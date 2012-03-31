@@ -21,8 +21,20 @@ this.sBPOP =
       title = bookmark.title
     else
       title = bookmark.href
-    html += sBookmark.truncate(title, 40)
-    html += "</a></li>"
+    html += sBookmark.truncate(title, 45)
+    html += "</a>"
+    if bookmark.timestamp
+      date = sBookmark.makeDateFromTimestamp(bookmark.timestamp)
+      html += "<span class=\"timestamp\">"
+      html += "("
+      html += date.getFullYear()
+      html += '/'
+      html += date.getMonth()
+      html += '/'
+      html += date.getDate()
+      html += ")"
+      html += "</span>"
+    html += "</li>"
     document.getElementById("bookmarks").innerHTML += html
 
 $("li.bookmark a.link").live "click", ->
