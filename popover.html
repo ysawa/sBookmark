@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="sbookmark.js"></script>
+    <script type="text/javascript" src="popover.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="default.css" />
     <link rel="stylesheet" type="text/css" media="all" href="style.css" />
   </head>
@@ -14,47 +15,5 @@
       <ul id="bookmarks">
       </ul>
     </div>
-    <script type="text/javascript">
-$(function () {
-  var sBPOP;
-
-  sBPOP = {
-    insertAllBookmarks: function () {
-      var auto_increment = sBookmark.getAutoIncrement();
-      for (var i = auto_increment - 1; i >= 0; i--) {
-        var bookmark = sBookmark.getBookmark(i);
-        if (bookmark === undefined) {
-          continue;
-        }
-        this.insertBookmark(i, bookmark);
-      }
-    },
-    insertBookmark: function (id, bookmark) {
-      var html = "<li class=\"bookmark\" id=\"bookmark_" + id + "\">";
-      html += "<a href=\"#\" class=\"delete\">x</a>";
-      html += "<a href=\"" + bookmark.href + "\" class=\"link\">";
-      if (bookmark.title) {
-        html += bookmark.title;
-      } else {
-        html += bookmark.href;
-      }
-      html += "</a></li>";
-      document.getElementById("bookmarks").innerHTML += html;
-    }
-  };
-
-  sBPOP.insertAllBookmarks();
-  $('li.bookmark a.link').live('click', function () {
-    safari.extension.globalPage.contentWindow.openNewPage($(this).attr('href'));
-    return false;
-  });
-  $('li.bookmark a.delete').live('click', function () {
-    var parent = $(this).parent('li.bookmark');
-    sBookmark.deleteBookmark(parent.attr('id').substr(9));
-    parent.slideUp();
-    return false;
-  });
-});
-    </script>
   </body>
 </html>

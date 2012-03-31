@@ -12,10 +12,16 @@
       }
       return _results;
     },
+    decrementCount: function() {
+      localStorage.count = this.getCount() - 1;
+      return parseInt(localStorage.count);
+    },
     deleteBookmark: function(key) {
       var store_key;
       store_key = this.makeBookmarkKey(key);
-      return localStorage.removeItem(store_key);
+      localStorage.removeItem(store_key);
+      this.decrementCount();
+      return this.log("delete: localStorage[" + store_key + "]");
     },
     findActiveBrowserWindow: function(event) {
       var browserWindow, menuId;
@@ -83,6 +89,9 @@
       this.incrementCount();
       return this.refreshPopovers();
     },
+    log: function(text) {
+      return safari.extension.globalPage.contentWindow.console.log(text);
+    },
     makeBookmarkKey: function(key) {
       var store_key;
       store_key = "bookmark_" + key;
@@ -113,7 +122,13 @@
       localStorage.count = value;
       return parseInt(localStorage.count);
     },
-    truncate: function(text, length) {}
+    truncate: function(text, length) {
+      if (text.length > length) {
+        return text.substr(text, length - 3) + '...';
+      } else {
+        return text;
+      }
+    }
   };
 
 }).call(this);

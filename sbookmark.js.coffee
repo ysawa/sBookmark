@@ -6,9 +6,16 @@ this.sBookmark =
     while i < popovers.length
       popovers[i].hide()
       i++
+
+  decrementCount: ->
+    localStorage.count = @getCount() - 1
+    parseInt localStorage.count
+
   deleteBookmark: (key) ->
     store_key = @makeBookmarkKey(key)
     localStorage.removeItem(store_key)
+    @decrementCount()
+    @log("delete: localStorage[#{store_key}]")
 
   findActiveBrowserWindow: (event) ->
     browserWindow = undefined
@@ -68,6 +75,9 @@ this.sBookmark =
     @incrementCount()
     @refreshPopovers()
 
+  log: (text) ->
+    safari.extension.globalPage.contentWindow.console.log(text)
+
   makeBookmarkKey: (key) ->
     store_key = "bookmark_" + key
     store_key
@@ -94,4 +104,8 @@ this.sBookmark =
     parseInt localStorage.count
 
   truncate: (text, length) ->
+    if text.length > length
+      text.substr(text, length - 3) + '...'
+    else
+      text
 
