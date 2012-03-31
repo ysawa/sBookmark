@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Bookmark</title>
+    <title>sBookmark</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="sbookmark.js"></script>
@@ -46,6 +46,12 @@ $(function () {
   sBPOP.insertAllBookmarks();
   $('li.bookmark a.link').live('click', function () {
     safari.extension.globalPage.contentWindow.openNewPage($(this).attr('href'));
+    return false;
+  });
+  $('li.bookmark a.delete').live('click', function () {
+    var parent = $(this).parent('li.bookmark');
+    sBookmark.deleteBookmark(parent.attr('id').substr(9));
+    parent.slideUp();
     return false;
   });
 });
