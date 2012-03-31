@@ -14,7 +14,7 @@ this.sBPOP =
 
   insertBookmark: (id, bookmark) ->
     html = "<li class=\"bookmark\" id=\"bookmark_" + id + "\">"
-    html += "<a href=\"#\" class=\"delete\">×</a>"
+    html += "<a href=\"#\" class=\"delete\" title=\"削除する\">×</a>"
     html += "<a href=\"" + bookmark.href + "\" class=\"link\">"
     title = undefined
     if bookmark.title

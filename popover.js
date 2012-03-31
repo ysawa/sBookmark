@@ -23,7 +23,7 @@
     insertBookmark: function(id, bookmark) {
       var html, title;
       html = "<li class=\"bookmark\" id=\"bookmark_" + id + "\">";
-      html += "<a href=\"#\" class=\"delete\">×</a>";
+      html += "<a href=\"#\" class=\"delete\" title=\"削除する\">×</a>";
       html += "<a href=\"" + bookmark.href + "\" class=\"link\">";
       title = void 0;
       if (bookmark.title) {
