@@ -4,7 +4,7 @@
     <title>Bookmark</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="sb.js"></script>
+    <script type="text/javascript" src="sbookmark.js"></script>
     <link rel="stylesheet" type="text/css" media="all" href="default.css" />
     <link rel="stylesheet" type="text/css" media="all" href="style.css" />
   </head>
@@ -16,13 +16,13 @@
     </div>
     <script type="text/javascript">
 $(function () {
-  var SBPOP;
+  var sBPOP;
 
-  SBPOP = {
+  sBPOP = {
     insertAllBookmarks: function () {
-      var auto_increment = SB.getAutoIncrement();
+      var auto_increment = sBookmark.getAutoIncrement();
       for (var i = auto_increment - 1; i >= 0; i--) {
-        var bookmark = SB.getBookmark(i);
+        var bookmark = sBookmark.getBookmark(i);
         if (bookmark === undefined) {
           continue;
         }
@@ -43,7 +43,7 @@ $(function () {
     }
   };
 
-  SBPOP.insertAllBookmarks();
+  sBPOP.insertAllBookmarks();
   $('li.bookmark a.link').live('click', function () {
     safari.extension.globalPage.contentWindow.openNewPage($(this).attr('href'));
     return false;
